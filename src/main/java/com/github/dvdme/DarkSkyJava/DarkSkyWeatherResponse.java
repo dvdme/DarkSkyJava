@@ -11,7 +11,10 @@ public class DarkSkyWeatherResponse implements WeatherResponse {
 
     public DarkSkyWeatherResponse(DarkSky darkSky) {
         this.currently = new CurrentlyWeatherDataPoint(darkSky);
-        this.hourly = new HourlyWeatherDataPoint(darkSky);
+        this.minutely = new MinutelyWeatherDataBlock(darkSky);
+        this.hourly = new HourlyWeatherDataBlock(darkSky);
+        this.daily = new DailyWeatherDataBlock(darkSky);
+
     }
 
     @Override
@@ -36,7 +39,7 @@ public class DarkSkyWeatherResponse implements WeatherResponse {
 
     @Override
     public WeatherDataBlock getMinuty() {
-        return null;
+        return this.minutely;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class DarkSkyWeatherResponse implements WeatherResponse {
 
     @Override
     public WeatherDataBlock getDaily() {
-        return null;
+        return this.daily;
     }
 
     @Override

@@ -1,14 +1,12 @@
 package com.github.dvdme.DarkSkyJava;
 
 
-public class HourlyWeatherDataPoint extends DarkSkyWeatherDataBlock {
+public class HourlyWeatherDataBlock extends DarkSkyWeatherDataBlock {
 
 	private static final String hourlyReplyKey = "hourly";
 
-	public HourlyWeatherDataPoint(DarkSky darkSky){
+	public HourlyWeatherDataBlock(DarkSky darkSky){
 		super(darkSky.getJsonResponse().get(hourlyReplyKey).asObject());
 	}
 
-
 }
-

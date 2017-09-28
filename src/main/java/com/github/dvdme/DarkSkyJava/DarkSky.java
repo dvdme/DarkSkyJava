@@ -214,18 +214,26 @@ public class DarkSky {
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
             StringBuffer result = new StringBuffer();
-            String line = "";
+            String line;
             while ((line = rd.readLine()) != null) {
                 result.append(line);
             }
 
-            this.rawResponse = result.toString();
-            this.jsonResponse = Json.parse(this.rawResponse).asObject();
-
-			this.weatherResponse = new DarkSkyWeatherResponse(this);
+            fetch(result.toString());
         }
         catch (Exception ex){}
     }
+
+	public void fetch(String jsonResponse) {
+		try {
+
+			this.rawResponse = jsonResponse;
+			this.jsonResponse = Json.parse(this.rawResponse).asObject();
+
+			this.weatherResponse = new DarkSkyWeatherResponse(this);
+		}
+		catch (Exception ex){}
+	}
 
 
 	/**

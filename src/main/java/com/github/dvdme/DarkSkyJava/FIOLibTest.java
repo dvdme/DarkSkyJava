@@ -54,7 +54,7 @@ public class FIOLibTest {
 		System.out.println("\n");
 
 		//Minutely data
-		MinutelyWeather minutely = new MinutelyWeather(fio);
+		MinutelyWeatherDataBlock minutely = new MinutelyWeatherDataBlock(fio);
 		if(minutely.minutes()<0)
 			System.out.println("No minutely data.");
 		else
@@ -82,7 +82,7 @@ public class FIOLibTest {
 		}
 
 		//Daily data
-		DailyWeather daily = new DailyWeather(fio);
+		DailyWeatherDataBlock daily = new DailyWeatherDataBlock(fio);
 		if(daily.days()<0)
 			System.out.println("No daily data.");
 		else
