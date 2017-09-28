@@ -3,9 +3,15 @@ package com.github.dvdme.DarkSkyJava;
 public class DarkSkyWeatherResponse implements WeatherResponse {
 
     private Double latitude;
+    private  Double longitude;
+    private WeatherDataPoint currently;
+    private WeatherDataBlock minutely;
+    private WeatherDataBlock hourly;
+    private WeatherDataBlock daily;
 
     public DarkSkyWeatherResponse(DarkSky darkSky) {
-
+        this.currently = new CurrentlyWeatherDataPoint(darkSky);
+        this.hourly = new HourlyWeatherDataPoint(darkSky);
     }
 
     @Override
@@ -25,7 +31,7 @@ public class DarkSkyWeatherResponse implements WeatherResponse {
 
     @Override
     public WeatherDataPoint getCurrently() {
-        return null;
+        return this.currently;
     }
 
     @Override
@@ -35,7 +41,7 @@ public class DarkSkyWeatherResponse implements WeatherResponse {
 
     @Override
     public WeatherDataBlock getHourly() {
-        return null;
+        return this.hourly;
     }
 
     @Override

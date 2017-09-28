@@ -3,7 +3,7 @@ package com.github.dvdme.DarkSkyJava;
 
 public class FIOLibTest {
 
-	private static final String apikey = "None";
+	private static final String apikey = "";
 
 	public static void main(String[] args) {
 
@@ -20,6 +20,11 @@ public class FIOLibTest {
 
 		DarkSky fio = new DarkSky(apikey, "38.7252993" , "-9.1500364");
 		fio.fetch();
+		fio.getWeatherResponse().getCurrently();//.temperature();
+
+
+		int dummy = 0;
+
 		//fio.setUnits(DarkSky.UNITS_SI);
 		//fio.setLang(DarkSky.LANG_ENGLISH);
 		fio.getForecast("38.7252993" , "-9.1500364");
@@ -39,8 +44,8 @@ public class FIOLibTest {
 		System.out.println("Offset: "+fio.offsetValue());
 		System.out.println("\n");	
 
-		//Currently data
-		CurrentlyWeather currently = new CurrentlyWeather(fio);
+		/*//Currently data
+		CurrentlyWeatherDataPoint currently = new CurrentlyWeatherDataPoint(fio);
 
 		System.out.println("\nCurrently\n");
 		String [] f  = currently.get().getFieldsArray();
@@ -116,7 +121,7 @@ public class FIOLibTest {
 			System.out.println("Alerts");
 			for(int i=0; i<alerts.NumberOfAlerts(); i++)
 				System.out.println(alerts.getAlert(i));
-		}
+		}*/
 
 	}//main
 

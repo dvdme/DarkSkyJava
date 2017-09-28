@@ -10,8 +10,8 @@ public class DarkSkyWeatherDataBlock implements WeatherDataBlock {
 
 	private String summary;
 	private String icon;
-	private List<DarkSkyWeatherDataPoint> data;
 	private String timezone;
+	private List<DarkSkyWeatherDataPoint> data;
 
 	public DarkSkyWeatherDataBlock(){
 		this.summary = "";

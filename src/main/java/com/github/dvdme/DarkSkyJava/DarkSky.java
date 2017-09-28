@@ -61,7 +61,11 @@ public class DarkSky {
 	private DarkSkyWeatherResponse weatherResponse;
 	private DarkSkyUrlHelper darkSkyUrlHelper;
 
-	public DarkSky(DarkSkyUrlHelper darkSkyUrlHelper){
+
+
+    private JsonObject jsonResponse;
+
+    public DarkSky(DarkSkyUrlHelper darkSkyUrlHelper){
 	    this.darkSkyUrlHelper = darkSkyUrlHelper;
     }
 
@@ -193,6 +197,10 @@ public class DarkSky {
 
 	}//construtor - end*/
 
+    public DarkSkyWeatherResponse getWeatherResponse() {
+        return weatherResponse;
+    }
+
     public void fetch() {
         try {
             HttpClient client = HttpClientBuilder.create().build();
@@ -212,7 +220,9 @@ public class DarkSky {
             }
 
             this.rawResponse = result.toString();
-            // TODO: headers and shit
+            this.jsonResponse = Json.parse(this.rawResponse).asObject();
+
+			this.weatherResponse = new DarkSkyWeatherResponse(this);
         }
         catch (Exception ex){}
     }
@@ -261,7 +271,13 @@ public class DarkSky {
 	}
 
 
+    public JsonObject getJsonResponse() {
+        return jsonResponse;
+    }
 
+    public void setJsonResponse(JsonObject jsonResponse) {
+        this.jsonResponse = jsonResponse;
+    }
 
 
     /**
