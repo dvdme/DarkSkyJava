@@ -50,55 +50,62 @@ public class DarkSkyUrlOptions {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public DarkSkyUrlOptions setLatitude(String latitude) {
         this.latitude = latitude;
+        return this;
     }
 
     public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public DarkSkyUrlOptions setLongitude(String longitude) {
         this.longitude = longitude;
+        return this;
     }
 
     public String getUnitsURL() {
         return unitsURL;
     }
 
-    public void setUnitsURL(String unitsURL) {
+    public DarkSkyUrlOptions setUnitsURL(String unitsURL) {
         this.unitsURL = unitsURL;
+        return this;
     }
 
     public String getTimeURL() {
         return timeURL;
     }
 
-    public void setTimeURL(String timeURL) {
+    public DarkSkyUrlOptions setTimeURL(String timeURL) {
         this.timeURL = timeURL;
+        return this;
     }
 
     public String getExcludeURL() {
         return excludeURL;
     }
 
-    public void setExcludeURL(String excludeURL) {
+    public DarkSkyUrlOptions setExcludeURL(String excludeURL) {
         this.excludeURL = excludeURL;
+        return this;
     }
 
     public String getLangURL() {
         return langURL;
     }
 
-    public void setLangURL(String langURL) {
+    public DarkSkyUrlOptions setLangURL(String langURL) {
         this.langURL = langURL;
+        return this;
     }
 
     public boolean isExtend() {
         return extend;
     }
 
-    public void setExtend(boolean extend) {
+    public DarkSkyUrlOptions setExtend(boolean extend) {
         this.extend = extend;
+        return this;
     }
 }

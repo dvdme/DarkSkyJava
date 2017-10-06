@@ -1,9 +1,12 @@
 package com.github.dvdme.DarkSkyJava;
 
 
+import com.github.dvdme.DarkSkyJava.Utils.DarkSkyUrl;
+import com.github.dvdme.DarkSkyJava.Utils.DarkSkyUrlOptions;
+
 public class FIOLibTest {
 
-	private static final String apikey = "";
+	private static final String apikey = "a66c3d9fd49043109081f945a9d4abba";
 
 	public static void main(String[] args) {
 
@@ -18,7 +21,10 @@ public class FIOLibTest {
 		//Alcatraz: 37.8267 , -122.423
 		//Caracas:  10.4880555, -66.8791667
 
-		DarkSky fio = new DarkSky(apikey, "38.7252993" , "-9.1500364");
+		DarkSkyUrlOptions options = new DarkSkyUrlOptions(apikey, "38.7252993" , "-9.1500364")
+				.setUnitsURL(DarkSkyUnits.SI.toString()).setLangURL(DarkSkyLanguages.ENGLISH.toString());
+		DarkSkyUrl url = new DarkSkyUrl(options);
+		DarkSky fio = new DarkSky(url);
 		fio.fetch();
 		fio.getWeatherResponse().getCurrently();//.temperature();
 

@@ -10,10 +10,11 @@ public class DarkSkyWeatherResponse implements WeatherResponse {
     private WeatherDataBlock daily;
 
     public DarkSkyWeatherResponse(DarkSky darkSky) {
-        this.currently = new CurrentlyWeatherDataPoint(darkSky);
-        this.minutely = new MinutelyWeatherDataBlock(darkSky);
-        this.hourly = new HourlyWeatherDataBlock(darkSky);
-        this.daily = new DailyWeatherDataBlock(darkSky);
+
+    this.currently = new CurrentlyWeatherDataPoint(darkSky);
+    this.minutely = new MinutelyWeatherDataBlock(darkSky);
+    this.hourly = new HourlyWeatherDataBlock(darkSky);
+    this.daily = new DailyWeatherDataBlock(darkSky);
 
     }
 

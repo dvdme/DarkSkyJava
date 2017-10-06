@@ -2,12 +2,14 @@ package com.github.dvdme.DarkSkyJava;
 
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DarkSkyWeatherDataBlock implements WeatherDataBlock {
 
+	private boolean exists;
 	private String summary;
 	private String icon;
 	private String timezone;
@@ -20,12 +22,17 @@ public class DarkSkyWeatherDataBlock implements WeatherDataBlock {
 		this.timezone = "GMT";
 	}
 
-	public DarkSkyWeatherDataBlock(JsonObject db){
-		this.summary = "";
-		this.icon = "";
-		this.data = null;
-		this.timezone = "GMT";
-		update(db);
+	public DarkSkyWeatherDataBlock(JsonValue db){
+		if(db != null) {
+			this.summary = "";
+			this.icon = "";
+			this.data = null;
+			this.timezone = "GMT";
+			update(db.asObject());
+			this.exists = true;
+		}else {
+			this.exists = false;
+		}
 	}
 
 	private void update(JsonObject db){
@@ -57,6 +64,11 @@ public class DarkSkyWeatherDataBlock implements WeatherDataBlock {
 		} catch (NullPointerException mpe) {
 			this.data = null;
 		}
+	}
+
+	@Override
+	public boolean exists() {
+		return this.exists;
 	}
 
 	/**

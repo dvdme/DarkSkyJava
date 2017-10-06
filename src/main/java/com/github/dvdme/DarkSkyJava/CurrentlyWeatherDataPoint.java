@@ -8,7 +8,7 @@ public class CurrentlyWeatherDataPoint extends DarkSkyWeatherDataPoint {
 	private static final String currentlyReplyKey = "currently";
 
 	public CurrentlyWeatherDataPoint(DarkSky darkSky){
-		super(darkSky.getJsonResponse().get(currentlyReplyKey).asObject());
+			super(darkSky.getJsonResponse().get(currentlyReplyKey));
 	}
 
 

@@ -8,7 +8,7 @@ public class DailyWeatherDataBlock extends  DarkSkyWeatherDataBlock {
 	private static final String dailyReplyKey = "daily";
 
 	public DailyWeatherDataBlock(DarkSky darkSky) {
-		super(darkSky.getJsonResponse().get(dailyReplyKey).asObject());
+		super(darkSky.getJsonResponse().get(dailyReplyKey));
 	}
 
 }

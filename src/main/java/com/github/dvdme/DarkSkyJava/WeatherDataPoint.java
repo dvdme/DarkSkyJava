@@ -1,6 +1,9 @@
 package com.github.dvdme.DarkSkyJava;
 
 public interface WeatherDataPoint {
+
+    boolean exists();
+
     String time();
 
     long timestamp();

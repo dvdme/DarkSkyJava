@@ -7,9 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
@@ -17,8 +14,7 @@ import java.util.zip.InflaterInputStream;
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
-import com.eclipsesource.json.JsonValue;
-import com.github.dvdme.DarkSkyJava.Utils.DarkSkyUrlHelper;
+import com.github.dvdme.DarkSkyJava.Utils.DarkSkyUrl;
 import com.github.dvdme.DarkSkyJava.Utils.DarkSkyUrlOptions;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -59,18 +55,18 @@ public class DarkSky {
 	private JsonArray alerts;
 
 	private DarkSkyWeatherResponse weatherResponse;
-	private DarkSkyUrlHelper darkSkyUrlHelper;
+	private DarkSkyUrl darkSkyUrl;
 
 
 
     private JsonObject jsonResponse;
 
-    public DarkSky(DarkSkyUrlHelper darkSkyUrlHelper){
-	    this.darkSkyUrlHelper = darkSkyUrlHelper;
+    public DarkSky(DarkSkyUrl darkSkyUrl){
+	    this.darkSkyUrl = darkSkyUrl;
     }
 
     public DarkSky(String apiKey, String latitude, String longitude){
-        this.darkSkyUrlHelper = new DarkSkyUrlHelper(new DarkSkyUrlOptions(apiKey, latitude, longitude));
+        this.darkSkyUrl = new DarkSkyUrl(new DarkSkyUrlOptions(apiKey, latitude, longitude));
     }
 
 /*	public DarkSky(String API_KEY){
@@ -204,7 +200,7 @@ public class DarkSky {
     public void fetch() {
         try {
             HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(darkSkyUrlHelper.getDarkSkyUrl());
+            HttpGet request = new HttpGet(darkSkyUrl.getDarkSkyUrl());
 
             request.addHeader("Accept-Encoding", "gzip, deflate");
             HttpResponse response = client.execute(request);
@@ -221,7 +217,9 @@ public class DarkSky {
 
             fetch(result.toString());
         }
-        catch (Exception ex){}
+        catch (Exception ex){
+        	System.err.println(ex);
+		}
     }
 
 	public void fetch(String jsonResponse) {
@@ -232,7 +230,9 @@ public class DarkSky {
 
 			this.weatherResponse = new DarkSkyWeatherResponse(this);
 		}
-		catch (Exception ex){}
+		catch (Exception ex){
+			System.err.println(ex);
+		}
 	}
 
 

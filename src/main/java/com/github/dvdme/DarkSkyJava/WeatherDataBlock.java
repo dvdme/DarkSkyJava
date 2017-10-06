@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface WeatherDataBlock {
 
+    boolean exists();
+
     List<DarkSkyWeatherDataPoint> data();
 
     String summary();

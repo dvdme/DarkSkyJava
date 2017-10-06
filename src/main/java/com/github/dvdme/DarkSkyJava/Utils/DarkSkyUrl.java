@@ -2,12 +2,12 @@ package com.github.dvdme.DarkSkyJava.Utils;
 
 import java.net.URL;
 
-public class DarkSkyUrlHelper {
+public class DarkSkyUrl {
 
     private DarkSkyUrlOptions urlOptions;
     private String darkSkyUrl;
 
-    public DarkSkyUrlHelper(DarkSkyUrlOptions urlOptions) throws IllegalArgumentException {
+    public DarkSkyUrl(DarkSkyUrlOptions urlOptions) throws IllegalArgumentException {
         this.urlOptions = urlOptions;
     }
 

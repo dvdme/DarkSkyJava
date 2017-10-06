@@ -14,9 +14,11 @@ import java.util.HashMap;
 import java.util.TimeZone;
 
 import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
 
 public class DarkSkyWeatherDataPoint implements WeatherDataPoint {
 
+	private boolean exists;
 	private HashMap<String, Object> datapoint;
 	private String timezone;
 
@@ -25,10 +27,15 @@ public class DarkSkyWeatherDataPoint implements WeatherDataPoint {
 		timezone = "GMT";
 	}
 
-	public DarkSkyWeatherDataPoint(JsonObject dp){
-		datapoint = new HashMap<String, Object>();
-		timezone = "GMT";
-		update(dp);	
+	public DarkSkyWeatherDataPoint(JsonValue dp){
+		if(dp != null) {
+			datapoint = new HashMap<String, Object>();
+			timezone = "GMT";
+			update(dp.asObject());
+			exists = true;
+		} else {
+			exists = false;
+		}
 	}
 
 	/**
@@ -103,6 +110,11 @@ public class DarkSkyWeatherDataPoint implements WeatherDataPoint {
 		else 
 			out = String.valueOf( datapoint.get(key) );
 		return out;
+	}
+
+	@Override
+	public boolean exists() {
+		return this.exists;
 	}
 
 	/**
