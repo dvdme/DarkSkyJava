@@ -4,5 +4,17 @@ env:
   - APIKEY_OSENV=00000000000000000000000000000042
 
 jdk:
+  - oraclejdk9
   - oraclejdk8
   - oraclejdk7
+
+sudo: required
+
+before_install:
+  - chmod +x gradlew
+
+script:
+  - ./gradlew clean build -i --continue
+
+
+
