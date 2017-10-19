@@ -1,5 +1,7 @@
 package com.github.dvdme.DarkSkyJava.Utils;
 
+import com.github.dvdme.DarkSkyJava.DarkSkyLanguages;
+import com.github.dvdme.DarkSkyJava.DarkSkyUnits;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +20,9 @@ public class DarkSkyUrlOptionsTest {
 
     @Before
     public void setUp() throws Exception {
-        options = new DarkSkyUrlOptions(OSENV, lat, lon);
+        options = new DarkSkyUrlOptions(OSENV, lat, lon)
+                .setLangURL(DarkSkyLanguages.PIG_LATIN.toString())
+                .setUnitsURL(DarkSkyUnits.SI.toString());
     }
 
     @After
@@ -62,10 +66,15 @@ public class DarkSkyUrlOptionsTest {
 
     @Test
     public void getUnitsURL() throws Exception {
+        String units = DarkSkyUnits.SI.toString();
+        assertEquals(units, options.getUnitsURL());
     }
 
     @Test
     public void setUnitsURL() throws Exception {
+        String units = DarkSkyUnits.AUTO.toString();
+        options.setUnitsURL(units);
+        assertEquals(units, options.getUnitsURL());
     }
 
     @Test
@@ -86,10 +95,15 @@ public class DarkSkyUrlOptionsTest {
 
     @Test
     public void getLangURL() throws Exception {
+        String lang = DarkSkyLanguages.PIG_LATIN.toString();
+        assertEquals(lang, options.getLangURL());
     }
 
     @Test
     public void setLangURL() throws Exception {
+        String lang = DarkSkyLanguages.PORTUGUESE.toString();
+        options.setLangURL(lang);
+        assertEquals(lang, options.getLangURL());
     }
 
     @Test

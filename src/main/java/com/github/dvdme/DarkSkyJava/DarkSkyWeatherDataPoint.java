@@ -31,7 +31,7 @@ public class DarkSkyWeatherDataPoint implements WeatherDataPoint {
 		if(dp != null) {
 			datapoint = new HashMap<String, Object>();
 			timezone = "GMT";
-			update(dp.asObject());
+			populateMap(dp.asObject());
 			exists = true;
 		} else {
 			exists = false;
@@ -42,21 +42,10 @@ public class DarkSkyWeatherDataPoint implements WeatherDataPoint {
 	 * Updates the data point data
 	 * @param dp JsonObect with the data
 	 */
-	private void update(JsonObject dp){
+	private void populateMap(JsonObject dp){
 		for(int i = 0; i < dp.names().size(); i++){
 			datapoint.put(dp.names().get(i), dp.get(dp.names().get(i)));
 		}
-	}
-
-	/**
-	 * Returns a String with all the Forecast.io field's available
-	 * in this data point.
-	 * 
-	 * @return the String with the field's names.
-	 * @see String
-	 */
-	public String getFields(){
-		return datapoint.keySet().toString();
 	}
 
 	/**
@@ -66,7 +55,7 @@ public class DarkSkyWeatherDataPoint implements WeatherDataPoint {
 	 * 
 	 * @return the String array with the field's names.
 	 */
-	public String [] getFieldsArray(){
+	public String [] getFields(){
 		Object [] obj = datapoint.keySet().toArray();
 		String [] out = new String[obj.length];
 		for(int i=0; i<obj.length; i++)

@@ -1,5 +1,5 @@
 package com.github.dvdme.DarkSkyJava;
-
+// TODO: move to utils
 public enum DarkSkyLanguages {
     BOSNIAN("bs"),
     GERMAN("de"),

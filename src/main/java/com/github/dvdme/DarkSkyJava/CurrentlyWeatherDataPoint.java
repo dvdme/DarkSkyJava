@@ -11,5 +11,15 @@ public class CurrentlyWeatherDataPoint extends DarkSkyWeatherDataPoint {
 			super(darkSky.getJsonResponse().get(currentlyReplyKey));
 	}
 
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("Currently Data\n");
+		String [] f  = getFields();
+		for(int i = 0; i<f.length;i++) {
+			sb.append(String.format("%s: %s\n", f[i], getByKey(f[i])));
+		}
+		return sb.toString();
+	}
 
 }

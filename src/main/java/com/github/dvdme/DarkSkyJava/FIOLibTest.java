@@ -26,7 +26,7 @@ public class FIOLibTest {
 		fio.fetch();
 		fio.getWeatherResponse().getCurrently();//.temperature();
 		System.out.println(fio.getWeatherResponse().getCurrently().temperature());
-
+        System.out.println(fio.getWeatherResponse().getCurrently().toString());
 
 		int dummy = 0;
 		System.exit(0);
