@@ -5,8 +5,10 @@ env:
 
 jdk:
   - oraclejdk9
+  - openjdk9
   - oraclejdk8
-  - oraclejdk7
+  - openjdk8
+  - openjdkjdk7
 
 sudo: required
 
