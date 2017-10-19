@@ -1,0 +1,8 @@
+language: java
+
+env:
+  - APIKEY_OSENV=00000000000000000000000000000042
+
+jdk:
+  - oraclejdk8
+  - oraclejdk7
