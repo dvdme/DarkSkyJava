@@ -65,6 +65,10 @@ public class DarkSky {
 	    this.darkSkyUrl = darkSkyUrl;
     }
 
+	public DarkSky(String latitude, String longitude){
+		this.darkSkyUrl = new DarkSkyUrl(new DarkSkyUrlOptions(latitude, longitude));
+	}
+
     public DarkSky(String apiKey, String latitude, String longitude){
         this.darkSkyUrl = new DarkSkyUrl(new DarkSkyUrlOptions(apiKey, latitude, longitude));
     }

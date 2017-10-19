@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 
 public class DarkSkyUrlOptions {
 
+    private static final String  APIKEY_OSENV = "DARKSKY_APIKEY";
     private static final String baseUrlURL = "https://api.darksky.net/forecast/";
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 
@@ -19,6 +20,10 @@ public class DarkSkyUrlOptions {
     private String excludeURL;
     private String langURL;
     private boolean extend;
+
+    public DarkSkyUrlOptions(String latitude, String longitude) throws IllegalArgumentException {
+        this(getApiKeyFromOsEnv(), latitude, longitude);
+    }
 
     public DarkSkyUrlOptions(String apiKey, String latitude, String longitude) throws IllegalArgumentException {
 
@@ -35,7 +40,15 @@ public class DarkSkyUrlOptions {
         else {
             throw new IllegalArgumentException("The API Key doesn't seam to be valid because it does not have 32 characters.");
         }
+    }
 
+    private static String getApiKeyFromOsEnv(){
+        String apiKey = System.getenv(APIKEY_OSENV);
+        if(apiKey == null){
+            String message = String.format("Invalid API Key. Failed to read environment variable %s", APIKEY_OSENV);
+            throw new IllegalArgumentException(message);
+        }
+        return apiKey;
     }
 
     public static String getBaseUrlURL() {

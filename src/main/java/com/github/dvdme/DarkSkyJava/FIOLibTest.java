@@ -6,8 +6,6 @@ import com.github.dvdme.DarkSkyJava.Utils.DarkSkyUrlOptions;
 
 public class FIOLibTest {
 
-	private static final String apikey = "a66c3d9fd49043109081f945a9d4abba";
-
 	public static void main(String[] args) {
 
 		//Some coordinates for testing
@@ -21,15 +19,17 @@ public class FIOLibTest {
 		//Alcatraz: 37.8267 , -122.423
 		//Caracas:  10.4880555, -66.8791667
 
-		DarkSkyUrlOptions options = new DarkSkyUrlOptions(apikey, "38.7252993" , "-9.1500364")
+		DarkSkyUrlOptions options = new DarkSkyUrlOptions("38.7252993" , "-9.1500364")
 				.setUnitsURL(DarkSkyUnits.SI.toString()).setLangURL(DarkSkyLanguages.ENGLISH.toString());
 		DarkSkyUrl url = new DarkSkyUrl(options);
 		DarkSky fio = new DarkSky(url);
 		fio.fetch();
 		fio.getWeatherResponse().getCurrently();//.temperature();
+		System.out.println(fio.getWeatherResponse().getCurrently().temperature());
 
 
 		int dummy = 0;
+		System.exit(0);
 
 		//fio.setUnits(DarkSky.UNITS_SI);
 		//fio.setLang(DarkSky.LANG_ENGLISH);
