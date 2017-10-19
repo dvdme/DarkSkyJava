@@ -6,6 +6,9 @@ import com.github.dvdme.DarkSkyJava.DarkSkyUnits;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+/**
+ *
+ */
 public class DarkSkyUrlOptions {
 
     private static final String  APIKEY_OSENV = "DARKSKY_APIKEY";
