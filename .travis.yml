@@ -7,7 +7,6 @@ jdk:
   - oraclejdk9
   - oraclejdk8
   - openjdk8
-  - openjdk7
 
 sudo: required
 

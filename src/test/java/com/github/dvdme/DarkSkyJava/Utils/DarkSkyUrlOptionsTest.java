@@ -23,6 +23,7 @@ public class DarkSkyUrlOptionsTest {
 
     @After
     public void tearDown() throws Exception {
+        // Do Nothing
     }
 
     @Test
@@ -32,22 +33,31 @@ public class DarkSkyUrlOptionsTest {
 
     @Test
     public void getDarkSkyApiKey() throws Exception {
+        assertEquals(OSENV, options.getDarkSkyApiKey());
     }
 
     @Test
     public void getLatitude() throws Exception {
+        assertEquals(lat, options.getLatitude());
     }
 
     @Test
     public void setLatitude() throws Exception {
+        String c = "28.9";
+        options.setLatitude(c);
+        assertEquals(c, options.getLatitude());
     }
 
     @Test
     public void getLongitude() throws Exception {
+        assertEquals(lon, options.getLongitude());
     }
 
     @Test
     public void setLongitude() throws Exception {
+        String c = "-8.5";
+        options.setLongitude(c);
+        assertEquals(c, options.getLongitude());
     }
 
     @Test
