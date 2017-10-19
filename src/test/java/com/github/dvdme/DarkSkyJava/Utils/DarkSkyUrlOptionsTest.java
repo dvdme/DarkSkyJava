@@ -32,7 +32,7 @@ public class DarkSkyUrlOptionsTest {
 
     @Test
     public void getBaseUrlURL() throws Exception {
-        assertEquals(baseUrlURL, "");//options.getBaseUrlURL());
+        assertEquals(baseUrlURL, options.getBaseUrlURL());
     }
 
     @Test
