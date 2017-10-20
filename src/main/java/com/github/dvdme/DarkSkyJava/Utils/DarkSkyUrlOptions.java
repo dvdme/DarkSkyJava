@@ -5,6 +5,8 @@ import com.github.dvdme.DarkSkyJava.DarkSkyUnits;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -20,9 +22,16 @@ public class DarkSkyUrlOptions {
     private String darkSkyApiKey;
     private String unitsURL;
     private String timeURL;
-    private String excludeURL;
+    private Set<String> excludeURL;
     private String langURL;
     private boolean extend;
+
+    private String currentlyName = "currently";
+    private String minutelyName = "minutely";
+    private String hourlyName = "hourly";
+    private String dailyName = "daily";
+    private String alertsName = "alerts";
+    private String flagsName = "flags";
 
     public DarkSkyUrlOptions(String latitude, String longitude) throws IllegalArgumentException {
         this(getApiKeyFromOsEnv(), latitude, longitude);
@@ -35,7 +44,7 @@ public class DarkSkyUrlOptions {
             this.latitude = latitude;
             this.longitude = longitude;
             this.timeURL = null;
-            this.excludeURL = null;
+            this.excludeURL = new HashSet<>();
             this.extend = false;
             this.unitsURL = DarkSkyUnits.AUTO.toString();
             this.langURL = DarkSkyLanguages.ENGLISH.toString();
@@ -99,11 +108,52 @@ public class DarkSkyUrlOptions {
     }
 
     public String getExcludeURL() {
-        return excludeURL;
+        if(excludeURL.isEmpty()){
+            return null;
+        }else {
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            for (String excluded : excludeURL) {
+                sb.append(String.format("%s,", excluded));
+            }
+            sb.deleteCharAt(sb.length() - 1).append("]");
+            return sb.toString();
+        }
     }
 
-    public DarkSkyUrlOptions setExcludeURL(String excludeURL) {
-        this.excludeURL = excludeURL;
+    public DarkSkyUrlOptions clearExclude() {
+        this.excludeURL.clear();
+        return this;
+    }
+
+    public DarkSkyUrlOptions setExcludeCurrently() {
+        this.excludeURL.add(currentlyName);
+        return this;
+    }
+
+    public DarkSkyUrlOptions setExcludeMinutely() {
+        this.excludeURL.add(minutelyName);
+        return this;
+    }
+
+    public DarkSkyUrlOptions setExcludeHourly() {
+        this.excludeURL.add(hourlyName);
+        return this;
+    }
+
+    public DarkSkyUrlOptions setExcludeDaily() {
+        this.excludeURL.add(dailyName);
+        return this;
+    }
+
+    public DarkSkyUrlOptions setExcludeAlerts() {
+        this.excludeURL.add(alertsName);
+        return this;
+    }
+
+    public DarkSkyUrlOptions setExcludeFlags() {
+        this.excludeURL.add(flagsName);
         return this;
     }
 

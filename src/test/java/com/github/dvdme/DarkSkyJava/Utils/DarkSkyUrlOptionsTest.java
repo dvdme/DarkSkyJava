@@ -16,13 +16,17 @@ public class DarkSkyUrlOptionsTest {
 
     private String lat = "38.1";
     private String lon = "-9.0";
+    private String time = "2013-05-06T12:00:00-0400";
+    private String units = DarkSkyUnits.SI.toString();
+    private String lang = DarkSkyLanguages.PIG_LATIN.toString();
     private DarkSkyUrlOptions options;
 
     @Before
     public void setUp() throws Exception {
         options = new DarkSkyUrlOptions(OSENV, lat, lon)
-                .setLangURL(DarkSkyLanguages.PIG_LATIN.toString())
-                .setUnitsURL(DarkSkyUnits.SI.toString());
+                .setLangURL(lang)
+                .setUnitsURL(units)
+                .setTimeURL(time);
     }
 
     @After
@@ -66,36 +70,84 @@ public class DarkSkyUrlOptionsTest {
 
     @Test
     public void getUnitsURL() throws Exception {
-        String units = DarkSkyUnits.SI.toString();
         assertEquals(units, options.getUnitsURL());
     }
 
     @Test
     public void setUnitsURL() throws Exception {
-        String units = DarkSkyUnits.AUTO.toString();
-        options.setUnitsURL(units);
-        assertEquals(units, options.getUnitsURL());
+        String u = DarkSkyUnits.SI.toString();
+        options.setUnitsURL(u);
+        assertEquals(u, options.getUnitsURL());
     }
 
     @Test
     public void getTimeURL() throws Exception {
+        assertEquals(time, options.getTimeURL());
     }
 
     @Test
     public void setTimeURL() throws Exception {
+        String time = "2017-07-06T19:20:02-0000";
+        options.setTimeURL(time);
+        assertEquals(time, options.getTimeURL());
     }
 
     @Test
-    public void getExcludeURL() throws Exception {
+    public void clearExclude() throws Exception {
+        options.setExcludeAlerts().setExcludeCurrently();
+        options.clearExclude();
+        assertEquals(null, options.getExcludeURL());
     }
 
     @Test
-    public void setExcludeURL() throws Exception {
+    public void setExcludeCurrently() throws Exception {
+        options.setExcludeCurrently();
+        assertEquals("[currently]", options.getExcludeURL());
+    }
+
+    @Test
+    public void setExcludeMinutely() throws Exception {
+        options.setExcludeMinutely();
+        assertEquals("[minutely]", options.getExcludeURL());
+    }
+
+    @Test
+    public void setExcludeHourly() throws Exception {
+        options.setExcludeHourly();
+        assertEquals("[hourly]", options.getExcludeURL());
+    }
+
+    @Test
+    public void setExcludeDaily() throws Exception {
+        options.setExcludeDaily();
+        assertEquals("[daily]", options.getExcludeURL());
+    }
+
+    @Test
+    public void setExcludeAlerts() throws Exception {
+        options.setExcludeAlerts();
+        assertEquals("[alerts]", options.getExcludeURL());
+    }
+
+    @Test
+    public void setExcludeFlags() throws Exception {
+        options.setExcludeFlags();
+        assertEquals("[flags]", options.getExcludeURL());
+    }
+
+    @Test
+    public void setExcludeMultiple() throws Exception {
+        options.setExcludeFlags().setExcludeCurrently().setExcludeHourly();
+        String excluded = options.getExcludeURL();
+        assertTrue(excluded.contains("flags"));
+        assertTrue(excluded.contains("currently"));
+        assertTrue(excluded.contains("hourly"));
+        assertTrue(excluded.contains(","));
+        assertFalse(excluded.endsWith(",]"));
     }
 
     @Test
     public void getLangURL() throws Exception {
-        String lang = DarkSkyLanguages.PIG_LATIN.toString();
         assertEquals(lang, options.getLangURL());
     }
 
@@ -108,10 +160,13 @@ public class DarkSkyUrlOptionsTest {
 
     @Test
     public void isExtend() throws Exception {
+        assertFalse(options.isExtend());
     }
 
     @Test
     public void setExtend() throws Exception {
+        options.setExtend(true);
+        assertTrue(options.isExtend());
     }
 
 }
